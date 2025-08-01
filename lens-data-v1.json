@@ -7,8 +7,8 @@
     "sensor": "Full Frame",
     "reliability": 10,
     "sharpness": 80,
-    "flares": 50,
-    "halation": 30,
+    "flares": 35,
+    "halation": 20,
     "score_weight": 1.0
   },
   {
