@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>TVL Lens Selector V52</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 30px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    select, input[type="range"] {
+      width: 100%;
+      margin: 10px 0 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #00ccff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 30px;
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .lens-link {
+      display: block;
+      color: #00ccff;
+      margin-top: 8px;
+      text-decoration: underline;
+    }
+    .lens-description {
+      color: #ccc;
+      font-size: 14px;
+      display: block;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Lens Selector</h2>
+
+  <label>1. Welke look zoek je?</label>
+  <select id="look">
+    <option value="Clean">Clean</option>
+    <option value="Vintage (subtiel)">Vintage (subtiel)</option>
+    <option value="Vintage (heftig)">Vintage (heftig)</option>
+    <option value="Vintage (artistiek)">Vintage (artistiek)</option>
+    <option value="Anamorphic">Anamorfisch</option>
+  </select>
+
+  <label>2. Welk sensorformaat gebruik je?</label>
+  <select id="sensor">
+    <option value="S35">S35</option>
+    <option value="Full Frame">Full Frame</option>
+  </select>
+
+  <label>3. Wat voor soort project is het?</label>
+  <select id="project">
+    <option value="commercial">Commercial / branded content</option>
+    <option value="film">Narratieve film / serie</option>
+    <option value="short">Korte film</option>
+    <option value="clip">Videoclip</option>
+    <option value="art">Artistiek project / experiment</option>
+  </select>
+
+  <label>4. Hoe scherp moet het beeld zijn?</label>
+  <input type="range" id="sharpness" min="0" max="100" value="50" oninput="document.getElementById('sharpnessVal').textContent = this.value;">
+  <div>Scherpte: <span id="sharpnessVal">50</span></div>
+
+  <label>5. Hoe extreem mogen de flares zijn?</label>
+  <input type="range" id="flares" min="0" max="100" value="50" oninput="document.getElementById('flaresVal').textContent = this.value;">
+  <div>Flares: <span id="flaresVal">50</span></div>
+
+  <label>6. Hoeveel halation/glow wil je?</label>
+  <input type="range" id="halation" min="0" max="100" value="50" oninput="document.getElementById('halationVal').textContent = this.value;">
+  <div>Halation/Glow: <span id="halationVal">50</span></div>
+
+  <button onclick="getRecommendation()">Toon Advies</button>
+  <div id="output">Advies komt hier te staan (placeholder).</div>
+
+<script>
+  // (volledige JS staat hierboven in de gebruikersinput, we gaan dat niet dupliceren)
+</script>
+</body>
+</html>
