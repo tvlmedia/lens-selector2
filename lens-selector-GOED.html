@@ -204,7 +204,7 @@ function getRecommendation() {
     if (look === "Anamorphic" && l.look !== "Anamorphic") return false;
     if (l.look === "Anamorphic" && look !== "Anamorphic") return false;
     if (sensor === "Full Frame" && l.sensor !== "Full Frame") return false;
-    if (look === "Clean" && !(l.name.includes("DZO ARLES") || l.name.includes("DZO Vespid") || l.name.includes("Zeiss Jena"))) return false;
+    if (look === "Clean" && !(l.name.includes("DZO ARLES") || l.name.includes("DZO Vespid") || l.name.includes("IronGlass Zeiss Jena"))) return false;
     if (look === "Vintage (subtiel)" && (l.name.includes("RED P") || l.name.includes("Lomo") || l.name.includes("MKII"))) return false;
     if (l.name.includes("Lomo") && sensor !== "S35") return false;
     return true;
