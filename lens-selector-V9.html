@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>TVL Lens Selector</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 30px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    select, input[type="range"] {
+      width: 100%;
+      margin: 10px 0 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #output {
+      margin-top: 30px;
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .lens-link {
+      display: block;
+      color: #00ccff;
+      margin-top: 8px;
+      text-decoration: underline;
+    }
+    .lens-description {
+      color: #ccc;
+      font-size: 14px;
+      display: block;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Lens Selector</h2>
+
+  <label>1. Welke look zoek je?</label>
+  <select id="look">
+    <option value="clean">Clean</option>
+    <option value="vintage_subtle">Vintage (subtiel)</option>
+    <option value="vintage_heftig">Vintage (heftig)</option>
+    <option value="vintage_artistiek">Vintage (artistiek)</option>
+    <option value="anamorfe">Anamorfisch</option>
+  </select>
+
+  <label>2. Welk sensorformaat gebruik je?</label>
+  <select id="sensor">
+    <option value="s35">S35</option>
+    <option value="ff">Full Frame</option>
+  </select>
+
+  <label>3. Wat voor soort project is het?</label>
+  <select id="project">
+    <option value="commercial">Commercial / branded content</option>
+    <option value="film">Narratieve film / serie</option>
+    <option value="short">Korte film</option>
+    <option value="clip">Videoclip</option>
+    <option value="art">Artistiek project / experiment</option>
+  </select>
+
+  <label>4. Hoe scherp moet het beeld zijn? (Scherp → Zacht)</label>
+  <input type="range" id="sharpness" min="0" max="100" value="50">
+
+  <label>5. Hoe extreem mogen de flares zijn? (Clean → Extreem)</label>
+  <input type="range" id="flares" min="0" max="100" value="50">
+
+  <label>6. Hoeveel halation/glow wil je? (Clean → Glow)</label>
+  <input type="range" id="halation" min="0" max="100" value="50">
+
+  <button onclick="getRecommendation()">Toon Advies</button>
+
+  <div id="output"></div>
+
+  <script>
+    const lenses = [
+      {
+        "name": "Cooke Panchro Classic FF",
+        "link": "/lens/cooke-panchro-classic-ff",
+        "look": "vintage_subtle",
+        "sensor": "ff",
+        "sharpness": 80,
+        "flares": 50,
+        "halation": 30,
+        "reliability": 10
+      },
+      {
+        "name": "IronGlass RED P",
+        "link": "/lens/ironglass-redp",
+        "look": "vintage_heftig",
+        "sensor": "ff",
+        "sharpness": 25,
+        "flares": 90,
+        "halation": 70,
+        "reliability": 4
+      },
+      {
+        "name": "DZO ARLES",
+        "link": "/lens/dzo-arles",
+        "look": "clean",
+        "sensor": "ff",
+        "sharpness": 95,
+        "flares": 5,
+        "halation": 5,
+        "reliability": 10
+      },
+      {
+        "name": "DZO Vespid",
+        "link": "/lens/dzo-vespid",
+        "look": "clean",
+        "sensor": "ff",
+        "sharpness": 85,
+        "flares": 15,
+        "halation": 15,
+        "reliability": 9
+      },
+      {
+        "name": "IronGlass Zeiss Jena",
+        "link": "/lens/zeiss-jena",
+        "look": "vintage_subtle",
+        "sensor": "ff",
+        "sharpness": 65,
+        "flares": 75,
+        "halation": 50,
+        "reliability": 7
+      },
+      {
+        "name": "IronGlass MKII",
+        "link": "/lens/ironglass-mkii",
+        "look": "vintage_artistiek",
+        "sensor": "ff",
+        "sharpness": 80,
+        "flares": 30,
+        "halation": 25,
+        "reliability": 9
+      },
+      {
+        "name": "Lomo Standard Speeds",
+        "link": "/lens/lomo-standard",
+        "look": "vintage_artistiek",
+        "sensor": "s35",
+        "sharpness": 15,
+        "flares": 80,
+        "halation": 90,
+        "reliability": 3
+      },
+      {
+        "name": "Blazar Remus",
+        "link": "/lens/blazar-remus",
+        "look": "anamorfe",
+        "sensor": "ff",
+        "sharpness": 60,
+        "flares": 75,
+        "halation": 30,
+        "reliability": 5
+      }
+    ];
+
+    const projectWeights = {
+      commercial: 0.5,
+      film: 1,
+      short: 0.3,
+      clip: 0,
+      art: 0
+    };
+
+    function getRecommendation() {
+      const look = document.getElementById("look").value;
+      const sensor = document.getElementById("sensor").value;
+      const project = document.getElementById("project").value;
+      const sharpness = parseInt(document.getElementById("sharpness").value);
+      const flares = parseInt(document.getElementById("flares").value);
+      const halation = parseInt(document.getElementById("halation").value);
+      const weight = projectWeights[project];
+
+      let scored = lenses
+        .filter(l => l.look === look && l.sensor === sensor)
+        .map(l => {
+          let score =
+            100 -
+            Math.abs(l.sharpness - sharpness) -
+            Math.abs(l.flares - flares) * 0.8 -
+            Math.abs(l.halation - halation) * 0.8;
+
+          score += l.reliability * weight * 2;
+          return { ...l, score };
+        });
+
+      scored.sort((a, b) => b.score - a.score);
+
+      if (scored.length === 0) {
+        document.getElementById("output").innerHTML = "Geen passende match gevonden.";
+        return;
+      }
+
+      const best = scored[0];
+      const alt1 = scored[1];
+      const alt2 = scored[2];
+
+      const descriptions = {
+        "Cooke Panchro Classic FF": "Warm en filmisch. Zachte bokeh, flatterende huidtinten, topklasse bouw.",
+        "IronGlass RED P": "Heftig en experimenteel. Sterke halation, flarey, uitgesproken look.",
+        "DZO ARLES": "Clean, modern en betrouwbaar. Zeer scherp met minimale breathing.",
+        "DZO Vespid": "Neutraal en gebalanceerd. Compact en veelzijdig.",
+        "IronGlass Zeiss Jena": "Vintage, subtiel. Mooie balans tussen scherpte en karakter.",
+        "IronGlass MKII": "Artistiek en karaktervol. Zachte beelden, flarey, vintage vibes.",
+        "Lomo Standard Speeds": "Zacht, schilderachtig en old school. Geen rehousing, dus fragieler.",
+        "Blazar Remus": "1.5x Anamorphic look met oval bokeh en horizontale flares. Budgetvriendelijk."
+      };
+
+      let html = `
+        <p><strong>Topmatch:</strong><br>
+        👉 <a class='lens-link' href='${best.link}' target='_blank'>${best.name}</a><br>
+        <span class='lens-description'>${descriptions[best.name]}</span></p>
+      `;
+
+      if (alt1) html += `
+        <p><strong>Alternatief:</strong><br>
+        👉 <a class='lens-link' href='${alt1.link}' target='_blank'>${alt1.name}</a><br>
+        <span class='lens-description'>${descriptions[alt1.name]}</span></p>
+      `;
+
+      if (alt2) html += `
+        <p><strong>Alternatief:</strong><br>
+        👉 <a class='lens-link' href='${alt2.link}' target='_blank'>${alt2.name}</a><br>
+        <span class='lens-description'>${descriptions[alt2.name]}</span></p>
+      `;
+
+      document.getElementById("output").innerHTML = html;
+    }
+  </script>
+</body>
+</html>
