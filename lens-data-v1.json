@@ -92,7 +92,7 @@
     "reliability": 9,
     "sharpness": 50,
     "flares": 30,
-    "halation": 400,
+    "halation": 40,
     "score_weight": 1.0
   },
   {
