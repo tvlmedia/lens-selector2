@@ -223,20 +223,20 @@ function getRecommendation() {
 
   scored.sort((a, b) => b.score - a.score);
 
-  // Verplaats DZO ARLES of Vespid naar alternatief als look niet clean of subtiel
-  if (!(look === "Clean" || look === "Vintage (subtiel)")) {
-    const forbiddenTopNames = ["DZO ARLES", "DZO Vespid"];
-    if (forbiddenTopNames.some(name => scored[0].name.includes(name))) {
-      for (let i = 1; i < scored.length; i++) {
-        if (!forbiddenTopNames.some(name => scored[i].name.includes(name))) {
-          const temp = scored[0];
-          scored[0] = scored[i];
-          scored[i] = temp;
-          break;
-        }
+  // Verplaats DZO ARLES, Vespid of Zeiss Jena naar alternatief als look niet clean of subtiel
+if (!(look === "Clean" || look === "Vintage (subtiel)")) {
+  const forbiddenTopNames = ["DZO ARLES", "DZO Vespid", "IronGlass Zeiss Jena"];
+  if (forbiddenTopNames.some(name => scored[0].name.includes(name))) {
+    for (let i = 1; i < scored.length; i++) {
+      if (!forbiddenTopNames.some(name => scored[i].name.includes(name))) {
+        const temp = scored[0];
+        scored[0] = scored[i];
+        scored[i] = temp;
+        break;
       }
     }
   }
+}
 
   let html = `<p><strong>Topmatch:</strong><br>👉 <a class='lens-link' href='${scored[0].url}' target='_blank'>${scored[0].name}</a><br><span class='lens-description'>${scored[0].description}</span></p>`;
   if (scored[1]) html += `<p><strong>Alternatief:</strong><br>👉 <a class='lens-link' href='${scored[1].url}' target='_blank'>${scored[1].name}</a><br><span class='lens-description'>${scored[1].description}</span></p>`;
