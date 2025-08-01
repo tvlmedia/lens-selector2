@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>TVL Lens Selector V28</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 30px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    select, input[type="range"] {
+      width: 100%;
+      margin: 10px 0 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #00ccff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 30px;
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .lens-link {
+      display: block;
+      color: #00ccff;
+      margin-top: 8px;
+      text-decoration: underline;
+    }
+    .lens-description {
+      color: #ccc;
+      font-size: 14px;
+      display: block;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Lens Selector</h2>
+
+  <label>1. Welke look zoek je?</label>
+  <select id="look">
+    <option value="clean">Clean</option>
+    <option value="vintage_subtle">Vintage (subtiel)</option>
+    <option value="vintage_heftig">Vintage (heftig)</option>
+    <option value="vintage_artistiek">Vintage (artistiek)</option>
+    <option value="anamorfe">Anamorfisch</option>
+  </select>
+
+  <label>2. Welk sensorformaat gebruik je?</label>
+  <select id="sensor">
+    <option value="s35">S35</option>
+    <option value="ff">Full Frame</option>
+  </select>
+
+  <label>3. Wat voor soort project is het?</label>
+  <select id="project">
+    <option value="commercial">Commercial / branded content</option>
+    <option value="film">Narratieve film / serie</option>
+    <option value="short">Korte film</option>
+    <option value="clip">Videoclip</option>
+    <option value="art">Artistiek project / experiment</option>
+  </select>
+
+  <label>4. Hoe scherp moet het beeld zijn?</label>
+  <input type="range" id="sharpness" min="0" max="100" value="50" oninput="document.getElementById('sharpnessVal').textContent = this.value;">
+  <div>Scherpte: <span id="sharpnessVal">50</span></div>
+
+  <label>5. Hoe extreem mogen de flares zijn?</label>
+  <input type="range" id="flares" min="0" max="100" value="50" oninput="document.getElementById('flaresVal').textContent = this.value;">
+  <div>Flares: <span id="flaresVal">50</span></div>
+
+  <label>6. Hoeveel halation/glow wil je?</label>
+  <input type="range" id="halation" min="0" max="100" value="50" oninput="document.getElementById('halationVal').textContent = this.value;">
+  <div>Halation/Glow: <span id="halationVal">50</span></div>
+
+  <button onclick="getRecommendation()">Toon Advies</button>
+  <div id="output">Advies komt hier te staan (placeholder).</div>
+
+<script>
+const lenses = [
+  { name: "Cooke Panchro Classic FF", link: "https://tvlrental.nl/cookepanchro/", look: "vintage_subtle", sensor: "ff", sharpness: 80, flares: 50, halation: 30, reliability: 10 },
+  { name: "IronGlass RED P", link: "https://tvlrental.nl/ironglassredp/", look: "vintage_heftig", sensor: "ff", sharpness: 25, flares: 90, halation: 70, reliability: 4 },
+  { name: "DZO ARLES", link: "https://tvlrental.nl/dzoarles/", look: "clean", sensor: "ff", sharpness: 95, flares: 5, halation: 5, reliability: 10 },
+  { name: "DZO Vespid", link: "https://tvlrental.nl/dzovespid/", look: "clean", sensor: "ff", sharpness: 85, flares: 15, halation: 15, reliability: 9 },
+  { name: "IronGlass Zeiss Jena", link: "https://tvlrental.nl/ironglasszeissjena/", look: "vintage_subtle", sensor: "ff", sharpness: 65, flares: 75, halation: 50, reliability: 9 },
+  { name: "IronGlass MKII", link: "https://tvlrental.nl/ironglassmkii/", look: "vintage_artistiek", sensor: "ff", sharpness: 80, flares: 30, halation: 25, reliability: 6.5 },
+  { name: "Lomo Standard Speeds", link: "https://tvlrental.nl/lomostandardspeed/", look: "vintage_artistiek", sensor: "s35", sharpness: 15, flares: 80, halation: 90, reliability: 4 },
+  { name: "Blazar Remus", link: "https://tvlrental.nl/blazarremus/", look: "anamorfe", sensor: "ff", sharpness: 60, flares: 75, halation: 30, reliability: 7 }
+];
+
+const descriptions = {
+  "Cooke Panchro Classic FF": "Warm en filmisch. Zachte bokeh, flatterende huidtinten, topklasse bouw.",
+  "IronGlass RED P": "Heftig en experimenteel. Sterke halation, flarey, uitgesproken look.",
+  "DZO ARLES": "Clean, modern en betrouwbaar. Zeer scherp met minimale breathing.",
+  "DZO Vespid": "Neutraal en gebalanceerd. Compact en veelzijdig.",
+  "IronGlass Zeiss Jena": "Vintage, subtiel. Mooie balans tussen scherpte en karakter.",
+  "IronGlass MKII": "Artistiek en karaktervol. Zachte beelden, flarey, vintage vibes.",
+  "Lomo Standard Speeds": "Zacht, schilderachtig en old school. Geen rehousing, dus fragieler.",
+  "Blazar Remus": "1.5x Anamorphic look met oval bokeh en horizontale flares. Budgetvriendelijk."
+};
+
+const projectWeights = {
+  commercial: 0.5,
+  film: 1,
+  short: 0.3,
+  clip: 0,
+  art: 0
+};
+
+function getRecommendation() {
+  const look = document.getElementById("look").value;
+  const sensor = document.getElementById("sensor").value;
+  const project = document.getElementById("project").value;
+  const sharpness = parseInt(document.getElementById("sharpness").value);
+  const flares = parseInt(document.getElementById("flares").value);
+  const halation = parseInt(document.getElementById("halation").value);
+  const weight = projectWeights[project];
+
+  let filtered = lenses.filter(l => {
+    if (look === "anamorfe" && l.look !== "anamorfe") return false;
+    if (sensor === "ff" && l.sensor !== "ff") return false;
+    return l.look === look;
+  });
+
+  let scored = filtered.map(l => {
+    let score = 100 - Math.abs(l.sharpness - sharpness)
+                      - Math.abs(l.flares - flares) * 0.8
+                      - Math.abs(l.halation - halation) * 0.8;
+    score += l.reliability * weight * 2;
+
+    if (project === "film" && (l.name.includes("Lomo") || l.name.includes("RED P"))) {
+      score -= 100;
+    }
+
+    return { ...l, score };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+
+  
+  if (scored.length === 0 || scored[0].score < 0) {
+    // Fallback: herhaal zonder straf voor onbetrouwbare lenzen
+    scored = lenses.filter(l => {
+      if (look === "anamorfe" && l.look !== "anamorfe") return false;
+      if (sensor === "ff" && l.sensor !== "ff") return false;
+      return l.look === look;
+    }).map(l => {
+      let score = 100 - Math.abs(l.sharpness - sharpness)
+                        - Math.abs(l.flares - flares) * 0.8
+                        - Math.abs(l.halation - halation) * 0.8;
+      score += l.reliability * weight * 2;
+      return { ...l, score };
+    }).sort((a, b) => b.score - a.score);
+
+    if (scored.length === 0 || scored[0].score < 0) {
+      document.getElementById("output").innerHTML = "Geen geschikte lenzen gevonden.";
+      return;
+    }
+
+    var fallback = true;
+  } else {
+    var fallback = false;
+  }
+
+
+  let html = "<p><strong>Topmatch:</strong><br>👉 <a class='lens-link' href='" + scored[0].link + "' target='_blank'>" + scored[0].name + "</a><br><span class='lens-description'>" + descriptions[scored[0].name] + "</span></p>";
+  if (scored[1]) html += "<p><strong>Alternatief:</strong><br>👉 <a class='lens-link' href='" + scored[1].link + "' target='_blank'>" + scored[1].name + "</a><br><span class='lens-description'>" + descriptions[scored[1].name] + "</span></p>";
+  if (scored[2]) html += "<p><strong>Alternatief:</strong><br>👉 <a class='lens-link' href='" + scored[2].link + "' target='_blank'>" + scored[2].name + "</a><br><span class='lens-description'>" + descriptions[scored[2].name] + "</span></p>";
+
+  
+  if (fallback) {
+    html = "<p><strong>Let op:</strong> Geen perfecte match gevonden. Hier zijn de best passende opties op basis van je voorkeuren:</p>" + html;
+  }
+  document.getElementById("output").innerHTML = html;
+
+}
+</script>
+
+</body>
+</html>
