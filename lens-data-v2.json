@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Cooke Panchro Classic FF",
+    "url": "https://tvlrental.nl/cookepanchro/",
+    "description": "Subtiel vintage, scherp in het midden met fall-off richting de hoeken, mooie flares. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (subtiel)",
+    "sensor": "Full Frame",
+    "reliability": 10,
+    "sharpness": 80,
+    "flares": 50,
+    "halation": 30,
+    "score_weight": 1.0
+  },
+  {
+    "name": "IronGlass RED P",
+    "url": "https://tvlrental.nl/ironglassredp/",
+    "description": "Vintage, heftig, veel flare, soft, Sovjet, kleuren zwemen, artistiek, extreem, swirly. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (heftig)",
+    "sensor": "Full Frame",
+    "reliability": 4,
+    "sharpness": 25,
+    "flares": 90,
+    "halation": 70,
+    "score_weight": 1.0
+  },
+  {
+    "name": "DZO ARLES",
+    "url": "https://tvlrental.nl/dzoarles/",
+    "description": "Clean, modern, heel compleet, scherp, weinig flares, lage t-stop. KLIK HIER VOOR MEER INFO",
+    "look": "Clean",
+    "sensor": "Full Frame",
+    "reliability": 10,
+    "sharpness": 95,
+    "flares": 5,
+    "halation": 5,
+    "score_weight": 1.0
+  },
+  {
+    "name": "DZO Vespid",
+    "url": "https://tvlrental.nl/dzovespid/",
+    "description": "Clean, licht vintage tintje maar subtiel, scherp, weinig flares, T2.1, compact. KLIK HIER VOOR MEER INFO",
+    "look": "Clean",
+    "sensor": "Full Frame",
+    "reliability": 9,
+    "sharpness": 85,
+    "flares": 15,
+    "halation": 15,
+    "score_weight": 1.0
+  },
+  {
+    "name": "IronGlass MKII",
+    "url": "https://tvlrental.nl/ironglassmkii/",
+    "description": "Vintage, heftig, flinke flares, soft, swirly bokeh, artistiek, focus fall-off, Sovjet. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (heftig)",
+    "sensor": "Full Frame",
+    "reliability": 7,
+    "sharpness": 65,
+    "flares": 75,
+    "halation": 50,
+    "score_weight": 1.0
+  },
+  {
+    "name": "IronGlass Zeiss Jena",
+    "url": "https://tvlrental.nl/ironglasszeissjena/",
+    "description": "Vintage maar iets minder dan Lomo of IronGlass MKII en RED P, relatief clean voor vintage, relatief scherp, mooie bokeh, Sovjet. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (subtiel)",
+    "sensor": "Full Frame",
+    "reliability": 9,
+    "sharpness": 80,
+    "flares": 30,
+    "halation": 25,
+    "score_weight": 1.0
+  },
+  {
+    "name": "Lomo Standard Speeds",
+    "url": "https://tvlrental.nl/lomostandardspeed/",
+    "description": "Vintage, Sovjet, zacht, dreamy, swirly, extreem, creatief, artistiek, creatieve flares, dromerig, cinematic. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (artistiek)",
+    "sensor": "S35",
+    "reliability": 3,
+    "sharpness": 15,
+    "flares": 80,
+    "halation": 90,
+    "score_weight": 1.0
+  },
+  {
+    "name": "Blazar Remus (1.5x Anamorphic)",
+    "url": "https://tvlrental.nl/blazarremus/",
+    "description": "Modern maar met subtiele vintage look, redelijk soft, anamorphic, 1.5 squeeze, amber flares, creatief, artistiek. KLIK HIER VOOR MEER INFO",
+    "look": "Anamorphic",
+    "sensor": "S35",
+    "reliability": 5,
+    "sharpness": 60,
+    "flares": 75,
+    "halation": 30,
+    "score_weight": 1.0
+  },
+  {
+    "name": "KLIK HIER",
+    "url": "https://www.youtube.com/shorts/LeO8gZ8mPOs",
+    "description": "KLIK HIER",
+    "look": "Clean",
+    "sensor": "Full Frame",
+    "reliability": 10,
+    "sharpness": 100,
+    "flares": 0,
+    "halation": 0,
+    "score_weight": 1.0
+  }
+]
