@@ -83,6 +83,18 @@
     "halation": 90,
     "score_weight": 1.0
   },
+   {
+    "name": "KLIK HIER",
+    "url": "https://www.youtube.com/shorts/LeO8gZ8mPOs",
+    "description": "KLIK HIER",
+    "look": "Vintage (subtiel)",
+    "sensor": "Full Frame",
+    "reliability": 9,
+    "sharpness": 50,
+    "flares": 30,
+    "halation": 400,
+    "score_weight": 1.0
+  },
   {
     "name": "Blazar Remus (1.5x Anamorphic)",
     "url": "https://tvlrental.nl/blazarremus/",
