@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Cooke Panchro Classic FF",
+    "url": "https://tvlrental.nl/cookepanchro/",
+    "description": "Warme, flatterende vintage look met moderne mechanics. Topkeuze voor drama, commercials en speelfilms. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (subtiel)",
+    "sensor": "Full Frame",
+    "reliability": 10,
+    "sharpness": 3,
+    "flares": 3,
+    "halation": 3,
+    "score_weight": 1.0
+  },
+  {
+    "name": "DZO Arles",
+    "url": "https://tvlrental.nl/dzoarles/",
+    "description": "Strak, clean en scherp beeld. Gemaakt voor hoge resolutie camera\u2019s. Perfect voor commercials. KLIK HIER VOOR MEER INFO",
+    "look": "Clean",
+    "sensor": "Full Frame",
+    "reliability": 10,
+    "sharpness": 9,
+    "flares": 2,
+    "halation": 1,
+    "score_weight": 1.0
+  },
+  {
+    "name": "DZO Vespid",
+    "url": "https://tvlrental.nl/dzovespid/",
+    "description": "Moderne, neutrale look met een vleugje karakter. Betrouwbaar en veelzijdig. KLIK HIER VOOR MEER INFO",
+    "look": "Clean",
+    "sensor": "Full Frame",
+    "reliability": 9,
+    "sharpness": 8,
+    "flares": 3,
+    "halation": 2,
+    "score_weight": 1.0
+  },
+  {
+    "name": "IronGlass MKII",
+    "url": "https://tvlrental.nl/ironglassmkii/",
+    "description": "Heftig, artistiek vintage glas met veel flare en glow. Perfect voor clips en art projecten. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (artistiek)",
+    "sensor": "Full Frame",
+    "reliability": 6.5,
+    "sharpness": 2,
+    "flares": 9,
+    "halation": 8,
+    "score_weight": 1.0
+  },
+  {
+    "name": "IronGlass Red P",
+    "url": "https://tvlrental.nl/ironglassredp/",
+    "description": "Extreem vintage en ruw. Veel karakter, maar technisch beperkt. Alleen geschikt voor creatieve clips. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (heftig)",
+    "sensor": "Full Frame",
+    "reliability": 3,
+    "sharpness": 1,
+    "flares": 10,
+    "halation": 9,
+    "score_weight": 1.0
+  },
+  {
+    "name": "IronGlass Zeiss Jena",
+    "url": "https://tvlrental.nl/ironglasszeissjena/",
+    "description": "Subtiel vintage met mooie bokeh en zachte overgangen. Gebalanceerde set. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (subtiel)",
+    "sensor": "Full Frame",
+    "reliability": 9,
+    "sharpness": 5,
+    "flares": 5,
+    "halation": 4,
+    "score_weight": 1.0
+  },
+  {
+    "name": "Lomo Standard Speed",
+    "url": "https://tvlrental.nl/lomostandardspeed/",
+    "description": "Zacht, dromerig en onvoorspelbaar. Veel karakter maar beperkte betrouwbaarheid. KLIK HIER VOOR MEER INFO",
+    "look": "Vintage (artistiek)",
+    "sensor": "S35",
+    "reliability": 4,
+    "sharpness": 3,
+    "flares": 8,
+    "halation": 7,
+    "score_weight": 1.0
+  },
+  {
+    "name": "Blazar Remus (1.5x Anamorphic)",
+    "url": "https://tvlrental.nl/blazarremus/",
+    "description": "Betaalbare anamorfische look met zachte hoeken en ovale bokeh. Ideaal voor clips. KLIK HIER VOOR MEER INFO",
+    "look": "Anamorphic",
+    "sensor": "S35",
+    "reliability": 7,
+    "sharpness": 4,
+    "flares": 7,
+    "halation": 6,
+    "score_weight": 1.0
+  }
+]
